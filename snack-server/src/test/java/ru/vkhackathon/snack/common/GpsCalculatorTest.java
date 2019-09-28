@@ -24,8 +24,6 @@ public class GpsCalculatorTest {
                 GpsPoint.build(59.977248, 30.345641),
                 distance + 1)
         );
-        double distanceOld = GpsCalculator.distanceOld(59.977248, 30.345641, 59.974622, 30.349017) * 1000;
-        System.out.println("distanceOld = " + distanceOld);
     }
 
     @Test

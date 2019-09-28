@@ -1,7 +1,8 @@
 /.idea
 *.iml
 /target
-/src/main/resources/mihalich-HP.properties
+# /snack-server/src/main/resources/
+mihalich-HP.properties
 
 # Compiled class file
 *.class

@@ -52,7 +52,7 @@
         <dependency>
             <groupId>ru.vkhackathon.snack</groupId>
             <artifactId>snack-api</artifactId>
-            <version>0.0.1</version>
+            <version>1.0.0</version>
         </dependency>
         <!--Test-->
         <dependency>

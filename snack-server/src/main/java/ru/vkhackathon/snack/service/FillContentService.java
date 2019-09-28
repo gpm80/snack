@@ -185,7 +185,6 @@ public class FillContentService {
         }
         Random rnd = new Random();
         {// Создать ТРЦ1
-//            GpsPoint randomInSquare = GpsCalculator.getRandomInSquare(GpsPoint.build(59.9339654, 30.3032489), 200);
             GpsPoint point = GpsPoint.build(59.9339654, 30.3032489);
             Trc trc = Builder.createTrc("У Манежа", "Большой и модный", point);
             TrcDAO savedTrc = trcRepository.save(trc);
@@ -193,14 +192,13 @@ public class FillContentService {
                 int i = 4;
                 while (i-- > 0) {
                     Brand brand = brands.get(rnd.nextInt(brands.size()));
-                    foodRepository.save(Builder.createFoodCourt("food " + brand.getTitle(), "Бужет описание",
+                    foodRepository.save(Builder.createFoodCourt("food " + brand.getTitle(), "Будет описание",
                             brand, savedTrc.getBean(), GpsCalculator.getRandomInSquare(point, 20))
                     );
                 }
             }
         }
         {
-//            GpsPoint randomInSquare = GpsCalculator.getRandomInSquare(GpsPoint.build(59.935392, 30.311365), 200);
             GpsPoint point = GpsPoint.build(59.935392, 30.311365);
             Trc trc2 = Builder.createTrc("Исакий", "Маленький но уютный", point);
             TrcDAO saveTrc2 = trcRepository.save(trc2);
@@ -210,6 +208,20 @@ public class FillContentService {
                     Brand brand = brands.get(rnd.nextInt(brands.size()));
                     foodRepository.save(Builder.createFoodCourt("food " + brand.getTitle(), "Бужет описание",
                             brand, saveTrc2.getBean(), GpsCalculator.getRandomInSquare(point, 20))
+                    );
+                }
+            }
+        }
+        {
+            GpsPoint point = GpsPoint.build(60.005341, 30.301262);
+            Trc trc = Builder.createTrc("Студенческий", "Большой, удобный и недорогой", point);
+            TrcDAO saveTrc = trcRepository.save(trc);
+            {// Привяжем к нему фудкорты
+                int i = 4;
+                while (i-- > 0) {
+                    Brand brand = brands.get(rnd.nextInt(brands.size()));
+                    foodRepository.save(Builder.createFoodCourt("food " + brand.getTitle(), "Будет описание",
+                            brand, saveTrc.getBean(), GpsCalculator.getRandomInSquare(point, 20))
                     );
                 }
             }

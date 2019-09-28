@@ -7,10 +7,33 @@ import ru.vkhackathon.snack.MenuItem;
  */
 public class MenuItemDAO extends CouchGeneric<MenuItem> {
 
+    /**
+     * Связка с кафе
+     */
     private String foodCourtId;
+    /**
+     * Связка с набором
+     */
+    private String menuGroupId;
 
     public MenuItemDAO() {
         super(TypeCouch.MENU_ITEM);
+    }
+
+    public String getMenuGroupId() {
+        return menuGroupId;
+    }
+
+    public void setMenuGroupId(String menuGroupId) {
+        this.menuGroupId = menuGroupId;
+    }
+
+    public String getFoodCourtId() {
+        return foodCourtId;
+    }
+
+    public void setFoodCourtId(String foodCourtId) {
+        this.foodCourtId = foodCourtId;
     }
 
     @Override
@@ -21,13 +44,5 @@ public class MenuItemDAO extends CouchGeneric<MenuItem> {
     @Override
     public void setBeanId(String id) {
         getBean().setId(id);
-    }
-
-    public String getFoodCourtId() {
-        return foodCourtId;
-    }
-
-    public void setFoodCourtId(String foodCourtId) {
-        this.foodCourtId = foodCourtId;
     }
 }
