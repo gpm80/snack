@@ -21,3 +21,16 @@
 
 + Примеры:
 * [/food/get/in/trc/{trcId}](93.171.217.252/snack-server/food/get/in/trc/db2cc8537b50020e8997659c7ccffcfa)
+
+### Запросы наборов блюд и меню
+**Возвращает наборы в указанном кафе**
+`/group/get/by/food/{foodId}`
+
++ Примеры:
+* [/group/get/by/food/{foodId}](93.171.217.252/snack-server/group/get/by/food/37e50c2150528f22b2bc5e310a008a9f)
+
+**Возвращает меню в указанном кафе**
+`/menu/get/by/food/{foodId}`
+
++ Примеры:
+* [/menu/get/by/food/{foodId}](93.171.217.252/snack-server/menu/get/by/food/37e50c2150528f22b2bc5e310a008a9f)
