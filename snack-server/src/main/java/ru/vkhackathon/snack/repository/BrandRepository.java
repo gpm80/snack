@@ -73,15 +73,6 @@ public class BrandRepository extends CouchDbRepositorySupport<BrandDAO> {
             update(brandDAO);
         }
         attachmentFileCouchDb.saveAttach(file, null, brandDAO.getBean(), brandDAO);
-//        if (file != null) {
-//            try (FileInputStream fis = new FileInputStream(file)) {
-//                AttachmentInputStream attach = new AttachmentInputStream(UUID.randomUUID().toString(), fis, MimeTypeUtils.IMAGE_JPEG_VALUE);
-//                brand.setLogoUri(String.format("%s/%s/%s/%s", header, nameDb, brandDAO.getId(), attach.getId()));
-//                db.createAttachment(brandDAO.getId(), brandDAO.getRevision(), attach);
-//            } catch (Exception e) {
-//                logger.warn("An error attach file image logo", e);
-//            }
-//        }
         return brandDAO.syncGetBean();
     }
 

@@ -3,7 +3,6 @@ package ru.vkhackathon.snack.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import ru.vkhackathon.snack.Brand;
 import ru.vkhackathon.snack.FoodCourt;
@@ -13,16 +12,14 @@ import ru.vkhackathon.snack.MenuItem;
 import ru.vkhackathon.snack.Special;
 import ru.vkhackathon.snack.Trc;
 import ru.vkhackathon.snack.common.GpsCalculator;
+import ru.vkhackathon.snack.common.ResFileUtils;
 import ru.vkhackathon.snack.domain.BrandDAO;
 import ru.vkhackathon.snack.domain.TrcDAO;
 import ru.vkhackathon.snack.repository.BrandRepository;
 import ru.vkhackathon.snack.repository.FoodCourtRepository;
-import ru.vkhackathon.snack.repository.MenuGroupRepository;
 import ru.vkhackathon.snack.repository.MenuItemRepository;
 import ru.vkhackathon.snack.repository.TrcRepository;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -46,10 +43,6 @@ public class FillContentService {
     @Autowired
     private TrcRepository trcRepository;
 
-    private File fileInResourses(String nameFile) throws IOException {
-        ClassPathResource resource = new ClassPathResource("images/" + nameFile);
-        return resource.getFile();
-    }
 
     private List<Brand> createBrands() {
         List<Brand> brands = brandRepository.findAll().stream()
@@ -58,29 +51,26 @@ public class FillContentService {
         if (!brands.isEmpty()) {
             return null;
         }
-        try {
-            Brand brand = new Brand();
-            brand.setTitle("Мексиканец");
-            brand.setDescription("Мексиканская кухня");
-            brands.add(brandRepository.save(brand, fileInResourses("foodMexico.jpg")));
+        Brand brand = new Brand();
+        brand.setTitle("Мексиканец");
+        brand.setDescription("Мексиканская кухня");
+        brands.add(brandRepository.save(brand, ResFileUtils.getFile("images", "foodMexico.jpg")));
 
-            brand = new Brand();
-            brand.setTitle("Морковка фуд");
-            brand.setDescription("Вегетарианская кухня");
-            brands.add(brandRepository.save(brand, fileInResourses("foodVegan.jpg")));
+        brand = new Brand();
+        brand.setTitle("Морковка фуд");
+        brand.setDescription("Вегетарианская кухня");
+        brands.add(brandRepository.save(brand, ResFileUtils.getFile("images", "foodVegan.jpg")));
 
-            brand = new Brand();
-            brand.setTitle("Здоровый фасфуд");
-            brand.setDescription("Кухня здорового питания");
-            brands.add(brandRepository.save(brand, fileInResourses("foodEco.jpg")));
+        brand = new Brand();
+        brand.setTitle("Здоровый фасфуд");
+        brand.setDescription("Кухня здорового питания");
+        brands.add(brandRepository.save(brand, ResFileUtils.getFile("images", "foodEco.jpg")));
 
-            brand = new Brand();
-            brand.setTitle("Бутер На");
-            brand.setDescription("Бутерброды шавухи и Ко");
-            brands.add(brandRepository.save(brand, fileInResourses("foodBurger.jpg")));
-        } catch (Exception e) {
-            logger.error("", e);
-        }
+        brand = new Brand();
+        brand.setTitle("Бутер На");
+        brand.setDescription("Бутерброды шавухи и Ко");
+        brands.add(brandRepository.save(brand, ResFileUtils.getFile("images", "foodBurger.jpg")));
+
         return brands;
     }
 
@@ -243,6 +233,7 @@ public class FillContentService {
 
     /**
      * Сохраняет группы меню и меню в базу
+     *
      * @param foodId
      */
     private void addMenuAndGroup(String foodId) {

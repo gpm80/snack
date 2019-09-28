@@ -5,7 +5,10 @@ package ru.vkhackathon.snack.service;
  */
 public class TestFillContentService {
 
+
+
     public boolean fillDb(){
+
         //Создаем
         return true;
     }
