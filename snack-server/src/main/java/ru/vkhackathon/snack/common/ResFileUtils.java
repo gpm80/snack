@@ -1,6 +1,5 @@
 package ru.vkhackathon.snack.common;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,15 +9,19 @@ import java.io.File;
 import java.io.FileInputStream;
 
 /**
- * Created by Petr Gusarov
+ * Утилита для ресурсов
  */
 public class ResFileUtils {
 
     private static Logger logger = LoggerFactory.getLogger(ResFileUtils.class);
 
     public static File getFile(String path, String nameFile) {
+        return getFile(path + "/" + nameFile);
+    }
+
+    public static File getFile(String nameRes) {
         try {
-            ClassPathResource resource = new ClassPathResource(path + "/" + nameFile);
+            ClassPathResource resource = new ClassPathResource(nameRes);
             return resource.getFile();
         } catch (Exception e) {
             logger.error("", e);
@@ -26,20 +29,14 @@ public class ResFileUtils {
         return null;
     }
 
-    public static JsonNode loadFromFile(File jsonFile) throws Exception {
+    public static <T> T loadFromFile(String res, Class<T> cls) throws Exception {
+        return loadFromFile(getFile(res), cls);
+    }
+
+    public static <T> T loadFromFile(File jsonFile, Class<T> cls) throws Exception {
         try (FileInputStream stream = new FileInputStream(jsonFile)) {
-//        try (FileReader reader = new FileReader(jsonFile)) {
-//            JsonParser parser = new JsonSimpleJsonParser();
-//            List<Object> objects = parser.parseList(IOUtils.toString(reader));
-//            JSONParser jsonParser = new JSONParser();
-//            Object parse = jsonParser.parse(reader);
-
-
             final ObjectMapper mapper = new ObjectMapper();
-            return mapper.readTree(stream);
-
-//            jsonNode.findParents()
-//            return jsonNode;
+            return mapper.readValue(stream, cls);
         }
     }
 }

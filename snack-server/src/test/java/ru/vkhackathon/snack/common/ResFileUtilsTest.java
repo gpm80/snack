@@ -1,9 +1,10 @@
 package ru.vkhackathon.snack.common;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.File;
+import ru.vkhackathon.snack.Brand;
+import ru.vkhackathon.snack.FoodCourt;
+import ru.vkhackathon.snack.Trc;
 
 /**
  * Created by Petr Gusarov
@@ -12,9 +13,15 @@ public class ResFileUtilsTest {
 
     @Test
     public void testJsonParser() throws Exception {
-        File jsonFile = ResFileUtils.getFile("json", "trc.json");
-        JsonNode jsonNode = ResFileUtils.loadFromFile(jsonFile);
-        jsonNode.isArray();
+        Assert.assertTrue(
+                ResFileUtils.loadFromFile("json/brand.json", Brand[].class).length > 0);
+        Assert.assertTrue(
+                ResFileUtils.loadFromFile("json/trc.json", Trc[].class).length > 0);
+        Assert.assertTrue(
+                ResFileUtils.loadFromFile("json/food.json", FoodCourt[].class).length > 0);
+        Assert.assertTrue(
+                ResFileUtils.loadFromFile("json/food.json", FoodCourt[].class).length > 0);
+
     }
 
 }

@@ -1,0 +1,200 @@
+[
+  {
+    "title": "Пицца Школьная",
+    "description": "колбаса докторская, помидоры,перец болгарский, сыр Российский",
+    "price": 250,
+    "kkal": 400,
+    "imageUri": null
+  },
+  {
+    "title": "Пицца С хлебом",
+    "description": "К пицце полагается кусочек черного хлеба, Кто ж ест без хлеба? Свинина, болгарский перец, лук, майонез, сыр Пошехонский",
+    "price": 159,
+    "kkal": 150,
+    "imageUri": null
+  },
+  {
+    "title": "Пицца Беззубый дед",
+    "description": "",
+    "price": 320,
+    "kkal": 700,
+    "imageUri": null
+  },
+  {
+    "title": "Пицца Деревенская",
+    "description": "(65 см), говядина, помидоры с грядки, огурцы солёные домашние, зелёный лук с грядки, сыр Адыгейский",
+    "price": 280,
+    "kkal": 420,
+    "imageUri": null
+  },
+  {
+    "title": "Ролл Тоска чёрная",
+    "description": "Лосось и сливочный сыр, завёрнутые в чёрный рис",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Ролл Сушняк",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Ролл Русские суши",
+    "description": "Запечённые суши с курицей, майонезом и российским сыром",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Набор Макай в сакэ",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Суп с морепродуктами Перенаселение",
+    "description": "В этом супе очень много морепродуктов. Правда, вы не сможете определить, что есть что.",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Свинина в томатном соусе Компартия",
+    "description": "Даже свинине идёт красный цвет",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Чай с красным перцем Огнедышащий дракон",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Рыбный суп с корнем лотоса Ароматный",
+    "description": "Вы будете чувствовать вкус этого супа ещё 3 дня после того, как его попробуете.",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Горячее блюдо Леди и Бродяга",
+    "description": "Аппетитные мясные фрикадельки в томатном соусе. На гарнир – спагетти.",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Горячее блюдо Хатико",
+    "description": "Тушёное мясо с салатом из свежих овощей и снежным крабом",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Горячее блюдо 101 далматинец",
+    "description": "Тушёное мясо в сметанном соусе со смесью белого и дикого риса.",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Чай Пуэр Собачья жизнь",
+    "description": "250 мл",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Виски Собака бывает кусачей",
+    "description": "Обжигающий напиток (50 мл)",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Салат Евро по 40",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Бургер Американский шпион",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Набор 12 друзей Сноудена",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Очередь за колбасой",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Щи Поищи",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Жареный ерш",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Борщ на пляже",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Голубцы на лагуне",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "Квасито (с лаймом)",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+  {
+    "title": "",
+    "description": "",
+    "price": 0,
+    "kkal": 0,
+    "imageUri": null
+  },
+
+
+]

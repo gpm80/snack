@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Морковка фуд",
+    "description": "Вегетарианская кухня",
+    "imageUri": "brand/morkofka.jpg"
+  },
+  {
+    "title": "Депресуши",
+    "description": "Ресторан японской кухни",
+    "imageUri": "brand/depresushi.jpg"
+  },
+  {
+    "title": "Пиццуля у бабули",
+    "description": "Что говоришь, внучок? Пиццу тебе сделать? Как в Италии? Да что там есть-то, как в Италии! Они там небось все худые как спички ходят в твоей Италии. А ты у меня, внучок, растущий организм, тебе нужно хорошо кушать. Сейчас бабушка тебя накормит",
+    "imageUri": "brand/grand.jpg"
+  },
+  {
+    "title": "Вонь Ю Чи",
+    "description": "Китайский ресторан",
+    "imageUri": "brand/vonchu.jpg"
+  },
+  {
+    "title": "Все псы попадают в рай",
+    "description": "Ресторан корейской кухни",
+    "imageUri": "brand/korean.jpg"
+  },
+  {
+    "title": "Квасим",
+    "description": "Русская кухня",
+    "imageUri": "brand/russian.jpg"
+  },
+  {
+
+  }
+
+
+]
