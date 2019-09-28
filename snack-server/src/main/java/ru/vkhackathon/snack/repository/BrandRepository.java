@@ -1,6 +1,5 @@
 package ru.vkhackathon.snack.repository;
 
-import org.ektorp.AttachmentInputStream;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.ViewQuery;
 import org.ektorp.support.CouchDbRepositorySupport;
@@ -8,16 +7,14 @@ import org.ektorp.support.View;
 import org.ektorp.support.Views;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.MimeTypeUtils;
 import ru.vkhackathon.snack.Brand;
 import ru.vkhackathon.snack.domain.BrandDAO;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -36,6 +33,8 @@ public class BrandRepository extends CouchDbRepositorySupport<BrandDAO> {
     private String header;
     @Value("${spring.ektorp.defaultDatabase}")
     private String nameDb;
+    @Autowired
+    private AttachmentFileCouchDb attachmentFileCouchDb;
 
     /**
      * @param db
@@ -50,17 +49,11 @@ public class BrandRepository extends CouchDbRepositorySupport<BrandDAO> {
      *
      * @return
      */
-    public List<Brand> findAll() {
+    public List<BrandDAO> findAll() {
         ViewQuery query = createQuery(VIEW_BRAND_ALL);
         List<BrandDAO> brandDAOS = db.queryView(query, BrandDAO.class);
         return brandDAOS.stream()
-                .peek(dao -> {
-                    if (dao.getAttachments() != null) {
-                        dao.getAttachments().keySet().stream().findFirst().ifPresent(s ->
-                                dao.getBean().setLogoUri(String.format("%s/%s/%s/%s", header, nameDb, dao.getId(), s)));
-                    }
-                })
-                .map(BrandDAO::syncGetBean)
+                .peek(dao -> attachmentFileCouchDb.lookImageUri(dao))
                 .collect(Collectors.toList());
     }
 
@@ -79,15 +72,16 @@ public class BrandRepository extends CouchDbRepositorySupport<BrandDAO> {
         } else {
             update(brandDAO);
         }
-        if (file != null) {
-            try (FileInputStream fis = new FileInputStream(file)) {
-                AttachmentInputStream attach = new AttachmentInputStream(UUID.randomUUID().toString(), fis, MimeTypeUtils.IMAGE_JPEG_VALUE);
-                brand.setLogoUri(String.format("%s/%s/%s/%s", header, nameDb, brandDAO.getId(), attach.getId()));
-                db.createAttachment(brandDAO.getId(), brandDAO.getRevision(), attach);
-            } catch (Exception e) {
-                logger.warn("An error attach file image logo", e);
-            }
-        }
+        attachmentFileCouchDb.saveAttach(file, null, brandDAO.getBean(), brandDAO);
+//        if (file != null) {
+//            try (FileInputStream fis = new FileInputStream(file)) {
+//                AttachmentInputStream attach = new AttachmentInputStream(UUID.randomUUID().toString(), fis, MimeTypeUtils.IMAGE_JPEG_VALUE);
+//                brand.setLogoUri(String.format("%s/%s/%s/%s", header, nameDb, brandDAO.getId(), attach.getId()));
+//                db.createAttachment(brandDAO.getId(), brandDAO.getRevision(), attach);
+//            } catch (Exception e) {
+//                logger.warn("An error attach file image logo", e);
+//            }
+//        }
         return brandDAO.syncGetBean();
     }
 

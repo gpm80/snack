@@ -8,20 +8,25 @@ import org.springframework.stereotype.Service;
 import ru.vkhackathon.snack.Brand;
 import ru.vkhackathon.snack.FoodCourt;
 import ru.vkhackathon.snack.GpsPoint;
+import ru.vkhackathon.snack.MenuGroup;
 import ru.vkhackathon.snack.MenuItem;
 import ru.vkhackathon.snack.Special;
 import ru.vkhackathon.snack.Trc;
 import ru.vkhackathon.snack.common.GpsCalculator;
+import ru.vkhackathon.snack.domain.BrandDAO;
 import ru.vkhackathon.snack.domain.TrcDAO;
 import ru.vkhackathon.snack.repository.BrandRepository;
 import ru.vkhackathon.snack.repository.FoodCourtRepository;
+import ru.vkhackathon.snack.repository.MenuGroupRepository;
 import ru.vkhackathon.snack.repository.MenuItemRepository;
 import ru.vkhackathon.snack.repository.TrcRepository;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Created by Petr Gusarov
@@ -37,6 +42,8 @@ public class FillContentService {
     @Autowired
     private MenuItemRepository menuItemRepository;
     @Autowired
+    private MenuGroupService menuGroupService;
+    @Autowired
     private TrcRepository trcRepository;
 
     private File fileInResourses(String nameFile) throws IOException {
@@ -45,7 +52,9 @@ public class FillContentService {
     }
 
     private List<Brand> createBrands() {
-        List<Brand> brands = brandRepository.findAll();
+        List<Brand> brands = brandRepository.findAll().stream()
+                .map(BrandDAO::syncGetBean)
+                .collect(Collectors.toList());
         if (!brands.isEmpty()) {
             return null;
         }
@@ -159,7 +168,7 @@ public class FillContentService {
             menuItem.setDescription(descrips[rnd.nextInt(descrips.length)]);
             menuItem.setPrice(prices[rnd.nextInt(prices.length)]);
             menuItem.getSpecialSet().add(Special.values()[rnd.nextInt(Special.values().length)]);
-            menuItemRepository.save(menuItem, foodId);
+            menuItemRepository.save(menuItem, foodId, null);
             total++;
         }
         return total;
@@ -220,9 +229,10 @@ public class FillContentService {
                 int i = 4;
                 while (i-- > 0) {
                     Brand brand = brands.get(rnd.nextInt(brands.size()));
-                    foodRepository.save(Builder.createFoodCourt("food " + brand.getTitle(), "Будет описание",
+                    FoodCourt food = foodRepository.save(Builder.createFoodCourt("food " + brand.getTitle(), "Будет описание",
                             brand, saveTrc.getBean(), GpsCalculator.getRandomInSquare(point, 20))
                     );
+                    addMenuAndGroup(food.getId());
                 }
             }
         }
@@ -231,12 +241,43 @@ public class FillContentService {
         return true;
     }
 
+    /**
+     * Сохраняет группы меню и меню в базу
+     * @param foodId
+     */
+    private void addMenuAndGroup(String foodId) {
+        Objects.requireNonNull(foodId, "foodId must'd be null");
+        MenuGroup menuGroup = new MenuGroup();
+        menuGroup.setTitle("Наборчик школьника");
+        menuGroup.setDescription("Для отличников");
+        {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setTitle("Пицца Школьна");
+            menuItem.setDescription("15 см");
+            menuItem.setKkal(700);
+            menuGroup.getMenuItems().add(menuItemRepository.save(menuItem, foodId, null).syncGetBean());
+            //
+            menuItem = new MenuItem();
+            menuItem.setTitle("Напиток сладкий");
+            menuItem.setDescription("250 мл");
+            menuItem.setKkal(200);
+            menuGroup.getMenuItems().add(menuItemRepository.save(menuItem, foodId, null).syncGetBean());
+            //
+            menuItem = new MenuItem();
+            menuItem.setTitle("Картошка с перцем");
+            menuItem.setDescription("Остренькая");
+            menuItem.setKkal(350);
+            menuGroup.getMenuItems().add(menuItemRepository.save(menuItem, foodId, null).syncGetBean());
+        }
+        menuGroupService.save(menuGroup, foodId, null);
+    }
+
     private static class Builder {
 
         static Trc createTrc(String title, String desc, GpsPoint point) {
             Trc trc = new Trc();
             trc.setTitle(title);
-            trc.setTitle(desc);
+            trc.setDescription(desc);
             trc.setLatitude(point.getLatitude());
             trc.setLongitude(point.getLongitude());
             return trc;

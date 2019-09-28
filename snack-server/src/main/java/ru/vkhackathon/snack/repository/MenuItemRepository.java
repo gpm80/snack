@@ -11,6 +11,7 @@ import ru.vkhackathon.snack.MenuItem;
 import ru.vkhackathon.snack.domain.CouchGeneric;
 import ru.vkhackathon.snack.domain.MenuItemDAO;
 
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,12 +21,14 @@ import java.util.stream.Collectors;
  */
 @Repository
 @Views({@View(name = MenuItemRepository.VIEW_BY_FOOD_ID,
-        map = "function(doc) { if (doc.type=='MENU_ITEM') { emit(doc.foodCourtId, doc) } }")})
+        map = "function(doc) { if (doc.type=='MENU_ITEM') { emit(doc.foodId, doc) } }")})
 public class MenuItemRepository extends CouchDbRepositorySupport<MenuItemDAO> {
 
     @Autowired
     public FoodCourtRepository foodCourtRepository;
-    public static final String VIEW_BY_FOOD_ID = "viewMenuByFoodId";
+    @Autowired
+    private AttachmentFileCouchDb attachmentFileCouchDb;
+    public static final String VIEW_BY_FOOD_ID = "viewByFoodId";
 
     public MenuItemRepository(CouchDbConnector db) {
         super(MenuItemDAO.class, db);
@@ -45,7 +48,7 @@ public class MenuItemRepository extends CouchDbRepositorySupport<MenuItemDAO> {
         List<MenuItemDAO> menuItemDAOS = db.queryView(query, type);
         return menuItemDAOS.stream()
                 .peek(dao -> Optional
-                        .ofNullable(foodCourtRepository.get(dao.getFoodCourtId()))
+                        .ofNullable(foodCourtRepository.get(dao.getFoodId()))
                         .ifPresent(food -> dao.getBean().setParentFoodCourt(food.syncGetBean()))
                 ).map(CouchGeneric::syncGetBean)
                 .collect(Collectors.toList());
@@ -57,17 +60,18 @@ public class MenuItemRepository extends CouchDbRepositorySupport<MenuItemDAO> {
      * @param menuItem элемент меню
      * @return
      */
-    public MenuItem save(MenuItem menuItem, String foodId) {
+    public MenuItemDAO save(MenuItem menuItem, String foodId, File file) {
         MenuItemDAO menuItemDAO = new MenuItemDAO();
         // Занулим чтобы не хранить БД
         menuItem.setParentFoodCourt(null);
         menuItemDAO.setBean(menuItem);
-        menuItemDAO.setFoodCourtId(foodId);
+        menuItemDAO.setFoodId(foodId);
         if (menuItemDAO.getId() == null) {
             add(menuItemDAO);
         } else {
             update(menuItemDAO);
         }
-        return menuItemDAO.syncGetBean();
+        attachmentFileCouchDb.saveAttach(file, null, menuItem, menuItemDAO);
+        return menuItemDAO;
     }
 }

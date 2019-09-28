@@ -10,30 +10,18 @@ public class MenuItemDAO extends CouchGeneric<MenuItem> {
     /**
      * Связка с кафе
      */
-    private String foodCourtId;
-    /**
-     * Связка с набором
-     */
-    private String menuGroupId;
+    private String foodId;
 
     public MenuItemDAO() {
         super(TypeCouch.MENU_ITEM);
     }
 
-    public String getMenuGroupId() {
-        return menuGroupId;
+    public String getFoodId() {
+        return foodId;
     }
 
-    public void setMenuGroupId(String menuGroupId) {
-        this.menuGroupId = menuGroupId;
-    }
-
-    public String getFoodCourtId() {
-        return foodCourtId;
-    }
-
-    public void setFoodCourtId(String foodCourtId) {
-        this.foodCourtId = foodCourtId;
+    public void setFoodId(String foodId) {
+        this.foodId = foodId;
     }
 
     @Override

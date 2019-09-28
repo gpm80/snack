@@ -64,7 +64,6 @@ public class FoodCourtRepository extends CouchDbRepositorySupport<FoodCourtDAO> 
         return db.queryView(
                 createQuery(VIEW_BY_TRC).key(trcId).limit(1000),
                 FoodCourtDAO.class);
-
     }
 
     /**

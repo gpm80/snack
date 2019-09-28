@@ -22,6 +22,15 @@ public abstract class CouchGeneric<T> extends CouchDbDocument {
         return super.getId();
     }
 
+    /**
+     * Проверка на новую сущность
+     *
+     * @return
+     */
+    public boolean isNew() {
+        return getId() == null;
+    }
+
     @Override
     public void setId(String id) {
         super.setId(id);

@@ -3,7 +3,7 @@ package ru.vkhackathon.snack;
 /**
  * Торговая марка
  */
-public class Brand {
+public class Brand implements ImageUri {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -22,7 +22,7 @@ public class Brand {
     /**
      * Относительная ссылка на логотип марки
      */
-    private String logoUri;
+    private String imageUri;
 
     public Brand() {
     }
@@ -51,11 +51,11 @@ public class Brand {
         this.description = description;
     }
 
-    public String getLogoUri() {
-        return logoUri;
+    public String getImageUri() {
+        return imageUri;
     }
 
-    public void setLogoUri(String logoUri) {
-        this.logoUri = logoUri;
+    public void setImageUri(String logoUri) {
+        this.imageUri = logoUri;
     }
 }

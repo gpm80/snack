@@ -1,9 +1,12 @@
 package ru.vkhackathon.snack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Группа меню
  */
-public class MenuGroup {
+public class MenuGroup implements ImageUri {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -18,6 +21,18 @@ public class MenuGroup {
      * Описание группы
      */
     private String description;
+
+    private String imageUri;
+
+    /**
+     * Родительский фуд
+     */
+    private FoodCourt foodCourt;
+
+    /**
+     * Набор подменю
+     */
+    private List<MenuItem> menuItems;
 
     public MenuGroup() {
     }
@@ -44,5 +59,32 @@ public class MenuGroup {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public FoodCourt getFoodCourt() {
+        return foodCourt;
+    }
+
+    public void setFoodCourt(FoodCourt foodCourt) {
+        this.foodCourt = foodCourt;
+    }
+
+    public List<MenuItem> getMenuItems() {
+        if (menuItems == null) {
+            menuItems = new ArrayList<MenuItem>();
+        }
+        return menuItems;
+    }
+
+    public void setMenuItems(List<MenuItem> menuItems) {
+        this.menuItems = menuItems;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 }

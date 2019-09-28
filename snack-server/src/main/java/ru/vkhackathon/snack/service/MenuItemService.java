@@ -1,13 +1,15 @@
 package ru.vkhackathon.snack.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.vkhackathon.snack.MenuItem;
+import ru.vkhackathon.snack.domain.MenuItemDAO;
 import ru.vkhackathon.snack.repository.MenuItemRepository;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Petr Gusarov
@@ -29,5 +31,10 @@ public class MenuItemService {
             return new ArrayList<>();
         }
         return menuItemRepository.findByFoodId(foodId, 100);
+    }
+
+    public MenuItem save(MenuItem menuItem, String foodId, File file) {
+        MenuItemDAO dao = menuItemRepository.save(menuItem, foodId, file);
+        return dao.syncGetBean();
     }
 }

@@ -6,6 +6,7 @@ import ru.vkhackathon.snack.MenuGroup;
 import ru.vkhackathon.snack.domain.MenuGroupDAO;
 import ru.vkhackathon.snack.repository.MenuGroupRepository;
 
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,5 +24,10 @@ public class MenuGroupService {
         return byFoodId.stream()
                 .map(MenuGroupDAO::syncGetBean)
                 .collect(Collectors.toList());
+    }
+
+    public MenuGroup save(MenuGroup menuGroup, String foodId, File file) {
+        MenuGroupDAO save = menuGroupRepository.save(menuGroup, foodId, file);
+        return save.syncGetBean();
     }
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Элемент меню
  */
-public class MenuItem {
+public class MenuItem implements ImageUri {
 
     private static final long serialVersionUID = 1L;
     /**
@@ -21,10 +21,7 @@ public class MenuItem {
      * Описание
      */
     private String description;
-    /**
-     * Группа меню
-     */
-    private MenuGroup menuGroup;
+
     /**
      * Типы спец меню
      */
@@ -46,7 +43,7 @@ public class MenuItem {
      */
     private int kkal;
     /**
-     * Относительная ссылка на изображение продукта
+     * Абсолютная ссылка на изображение продукта
      */
     private String imageUri;
     /**
@@ -79,14 +76,6 @@ public class MenuItem {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public MenuGroup getMenuGroup() {
-        return menuGroup;
-    }
-
-    public void setMenuGroup(MenuGroup menuGroup) {
-        this.menuGroup = menuGroup;
     }
 
     public FoodCourt getParentFoodCourt() {

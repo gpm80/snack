@@ -25,12 +25,4 @@ public class MenuItemRest {
     public List<MenuItem> getMenuByFoodId(@PathVariable("foodId") String foodId) {
         return menuItemService.getByFoodCoourtId(foodId);
     }
-
-    @RequestMapping(path = "/get/by/group/{groupId}")
-    public List<MenuItem> getMenuByGroup(@PathVariable("groupId") String groupId){
-        //TODO
-        return new ArrayList<>();
-    }
-
-
 }
