@@ -32,6 +32,10 @@ public class MenuGroup implements ImageUri {
      */
     private int price;
     /**
+     * Энергетическая ценность порции
+     */
+    private int kkal;
+    /**
      * Родительский фуд
      */
     private FoodCourt foodCourt;
@@ -97,6 +101,14 @@ public class MenuGroup implements ImageUri {
 
     public int getPrice() {
         return price;
+    }
+
+    public int getKkal() {
+        return kkal;
+    }
+
+    public void setKkal(int kkal) {
+        this.kkal = kkal;
     }
 
     public void setPrice(int price) {

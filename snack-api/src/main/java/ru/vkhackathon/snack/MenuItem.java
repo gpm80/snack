@@ -39,7 +39,7 @@ public class MenuItem implements ImageUri {
      */
     private int weight;
     /**
-     * Энергетическая ценность продукта на 100 г.
+     * Энергетическая ценность порции
      */
     private int kkal;
     /**
