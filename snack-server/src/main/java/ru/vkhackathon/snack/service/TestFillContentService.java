@@ -41,6 +41,7 @@ public class TestFillContentService {
         // Сохраним бренды
         List<Brand> saveBrands = Stream.of(brands).map(brand -> {
             File file = ResFileUtils.getFile(brand.getImageUri());
+            brand.setImageUri(null);
             return brandService.save(brand, file);
         }).collect(Collectors.toList());
 

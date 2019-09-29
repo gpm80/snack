@@ -34,6 +34,7 @@ public class MenuItemService {
     }
 
     public MenuItem save(MenuItem menuItem, String foodId, File file) {
+        menuItem.setImageUri(null);
         MenuItemDAO dao = menuItemRepository.save(menuItem, foodId, file);
         return dao.syncGetBean();
     }

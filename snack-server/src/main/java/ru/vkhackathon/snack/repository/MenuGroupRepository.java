@@ -11,6 +11,7 @@ import ru.vkhackathon.snack.domain.MenuGroupDAO;
 
 import java.io.File;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Petr Gusarov
@@ -31,7 +32,10 @@ public class MenuGroupRepository extends CouchDbRepositorySupport<MenuGroupDAO> 
     }
 
     public List<MenuGroupDAO> findByFoodId(String foodId) {
-        return db.queryView(createQuery(VIEW_BY_FOOD).key(foodId), MenuGroupDAO.class);
+        return db.queryView(createQuery(VIEW_BY_FOOD).key(foodId), MenuGroupDAO.class)
+                .stream().peek(dao -> attachmentFileCouchDb.lookImageUri(dao)).collect(Collectors.toList());
+
+
     }
 
     /**

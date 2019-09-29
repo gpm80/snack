@@ -36,6 +36,7 @@ public class MenuGroupService {
         }
         menuGroup.setPrice(price);
         menuGroup.setKkal(kkal);
+        menuGroup.setImageUri(null);
         MenuGroupDAO save = menuGroupRepository.save(menuGroup, foodId, file);
         return save.syncGetBean();
     }

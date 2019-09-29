@@ -50,7 +50,8 @@ public class MenuItemRepository extends CouchDbRepositorySupport<MenuItemDAO> {
                 .peek(dao -> Optional
                         .ofNullable(foodCourtRepository.get(dao.getFoodId()))
                         .ifPresent(food -> dao.getBean().setParentFoodCourt(food.syncGetBean()))
-                ).map(CouchGeneric::syncGetBean)
+                ).peek(dao -> attachmentFileCouchDb.lookImageUri(dao))
+                .map(CouchGeneric::syncGetBean)
                 .collect(Collectors.toList());
     }
 
