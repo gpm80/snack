@@ -24,7 +24,7 @@ public class ResFileUtils {
             ClassPathResource resource = new ClassPathResource(nameRes);
             return resource.getFile();
         } catch (Exception e) {
-            logger.error("", e);
+//            logger.error("", e);
         }
         return null;
     }

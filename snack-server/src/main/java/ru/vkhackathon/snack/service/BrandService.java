@@ -6,6 +6,7 @@ import ru.vkhackathon.snack.Brand;
 import ru.vkhackathon.snack.domain.BrandDAO;
 import ru.vkhackathon.snack.repository.BrandRepository;
 
+import java.io.File;
 import java.util.Optional;
 
 /**
@@ -21,5 +22,9 @@ public class BrandService {
         BrandDAO brandDAO = brandRepository.get(id);
         return Optional.ofNullable(brandDAO).orElse(new BrandDAO())
                 .getBean();
+    }
+
+    public Brand save(Brand brand, File file) {
+        return brandRepository.save(brand, file);
     }
 }

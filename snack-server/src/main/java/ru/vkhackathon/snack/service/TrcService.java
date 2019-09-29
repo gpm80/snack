@@ -28,4 +28,9 @@ public class TrcService {
                 .filter(bean -> GpsCalculator.isInSquareArea(bean, point, radius))
                 .collect(Collectors.toList());
     }
+
+    public Trc save(Trc trc){
+        TrcDAO save = trcRepository.save(trc);
+        return save.syncGetBean();
+    }
 }

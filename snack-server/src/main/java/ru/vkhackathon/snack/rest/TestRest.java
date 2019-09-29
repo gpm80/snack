@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.vkhackathon.snack.GpsPoint;
 import ru.vkhackathon.snack.service.FillContentService;
 import ru.vkhackathon.snack.service.FoodCourtService;
+import ru.vkhackathon.snack.service.TestFillContentService;
 
 /**
  * Created by Petr Gusarov
@@ -19,6 +20,8 @@ public class TestRest {
     private FoodCourtService foodCourtService;
     @Autowired
     private FillContentService fillContentService;
+    @Autowired
+    private TestFillContentService testFillContentService;
 
     @RequestMapping(path = "/ping")
     public boolean testPing() {
@@ -45,7 +48,12 @@ public class TestRest {
     }
 
     @RequestMapping(path = "/fill/min")
-    public boolean fillMinForTest(){
+    public boolean fillMinForTest() {
         return fillContentService.minFill();
+    }
+
+    @RequestMapping(path = "/fill/present")
+    public boolean fillPresent() throws Exception {
+        return testFillContentService.fillDb();
     }
 }

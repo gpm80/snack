@@ -76,4 +76,8 @@ public class FoodCourtService {
                 .map(FoodCourtDAO::syncGetBean)
                 .collect(Collectors.toList());
     }
+
+    public FoodCourt save(FoodCourt foodCourt) {
+        return repository.save(foodCourt);
+    }
 }
