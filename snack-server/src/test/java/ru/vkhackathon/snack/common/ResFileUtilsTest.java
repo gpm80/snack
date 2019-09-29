@@ -3,7 +3,8 @@ package ru.vkhackathon.snack.common;
 import org.junit.Assert;
 import org.junit.Test;
 import ru.vkhackathon.snack.Brand;
-import ru.vkhackathon.snack.FoodCourt;
+import ru.vkhackathon.snack.MenuGroup;
+import ru.vkhackathon.snack.MenuItem;
 import ru.vkhackathon.snack.Trc;
 
 /**
@@ -18,10 +19,9 @@ public class ResFileUtilsTest {
         Assert.assertTrue(
                 ResFileUtils.loadFromFile("json/trc.json", Trc[].class).length > 0);
         Assert.assertTrue(
-                ResFileUtils.loadFromFile("json/food.json", FoodCourt[].class).length > 0);
+                ResFileUtils.loadFromFile("json/group.json", MenuGroup[].class).length > 0);
         Assert.assertTrue(
-                ResFileUtils.loadFromFile("json/food.json", FoodCourt[].class).length > 0);
-
+                ResFileUtils.loadFromFile("json/menu.json", MenuItem[].class).length > 0);
     }
 
 }

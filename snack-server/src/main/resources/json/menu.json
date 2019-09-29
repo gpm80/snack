@@ -4,28 +4,28 @@
     "description": "колбаса докторская, помидоры,перец болгарский, сыр Российский",
     "price": 250,
     "kkal": 400,
-    "imageUri": null
+    "imageUri": "images/menu/pizz1.jpg"
   },
   {
     "title": "Пицца С хлебом",
     "description": "К пицце полагается кусочек черного хлеба, Кто ж ест без хлеба? Свинина, болгарский перец, лук, майонез, сыр Пошехонский",
     "price": 159,
     "kkal": 150,
-    "imageUri": null
+    "imageUri": "images/menu/pizz2.jpg"
   },
   {
     "title": "Пицца Беззубый дед",
     "description": "",
     "price": 320,
     "kkal": 700,
-    "imageUri": null
+    "imageUri": "images/menu/pizz3.jpg"
   },
   {
     "title": "Пицца Деревенская",
     "description": "(65 см), говядина, помидоры с грядки, огурцы солёные домашние, зелёный лук с грядки, сыр Адыгейский",
     "price": 280,
     "kkal": 420,
-    "imageUri": null
+    "imageUri": "images/menu/pizz4.jpg"
   },
   {
     "title": "Ролл Тоска чёрная",
@@ -194,7 +194,5 @@
     "price": 0,
     "kkal": 0,
     "imageUri": null
-  },
-
-
+  }
 ]

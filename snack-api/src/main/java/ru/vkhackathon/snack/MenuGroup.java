@@ -22,8 +22,15 @@ public class MenuGroup implements ImageUri {
      */
     private String description;
 
+    /**
+     * Изображение
+     */
     private String imageUri;
 
+    /**
+     * Цена в рублях
+     */
+    private int price;
     /**
      * Родительский фуд
      */
@@ -86,5 +93,13 @@ public class MenuGroup implements ImageUri {
 
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

@@ -27,7 +27,7 @@ public class MenuItem implements ImageUri {
      */
     private Set<Special> specialSet;
     /**
-     * Цена в копейках
+     * Цена в рублях
      */
     private int price;
     /**
